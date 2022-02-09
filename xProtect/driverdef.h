@@ -1,7 +1,18 @@
 #pragma once
 
-#include <ntddk.h>
+#include <ntifs.h>
 
+#include <ntddk.h>
+#include<windef.h>
+#include<ntstatus.h>
+
+#include <stdio.h>
+#include <stdlib.h>
+
+extern "C" UCHAR * PsGetProcessImageFileName
+(
+	_In_ PEPROCESS Process
+);
 
 typedef struct _LDR_DATA
 {
@@ -23,4 +34,7 @@ OB_PREOP_CALLBACK_STATUS ObjectPreCallback(
 	_In_  POB_PRE_OPERATION_INFORMATION OperationInformation
 );
 
-PUCHAR PsGetProcessImageFileName(__in PEPROCESS Process);
+
+char* GetProcessImageNameByProcessID(
+	_In_ ULONG ulProcessID
+);
